@@ -19,14 +19,12 @@ function hitungSisaEfektif(float $jatahAnggaran, float $terpakai, float $cadanga
 function evaluasiStatusPos(float $jatahAnggaran, float $terpakai): string
 {
     $persentase = ($jatahAnggaran > 0) ? (($terpakai / $jatahAnggaran) * 100) : 100.0;
-
-    // Syarat 2a: Percabangan if/elseif
     if ($persentase > 100.0) {
-        return 'Overbudget (Defisit)';
+        return 'Overbudget';
     } elseif ($persentase >= 80.0) {
-        return 'Waspada (Hampir Habis)';
+        return 'Waspada';
     } else {
-        return 'Aman (Terkendali)';
+        return 'Aman';
     }
 }
 
@@ -44,7 +42,6 @@ function olahRincianPos(array $pos, float $cadanganDarurat = 0.05): array
     $persenPakai = ($jatah > 0) ? (($terpakai / $jatah) * 100) : 0.0;
     $status = evaluasiStatusPos($jatah, $terpakai);
 
-    // Syarat 2b: Percabangan match untuk menentukan rekomendasi prioritas pos
     $prioritas = match ($pos['kategori']) {
         'Kebutuhan Pokok' => 'Prioritas 1',
         'Akademik'        => 'Prioritas 2',
@@ -53,7 +50,7 @@ function olahRincianPos(array $pos, float $cadanganDarurat = 0.05): array
         default           => 'Prioritas Umum',
     };
 
-    // Skala serapan 1 sampai 5 untuk indikator visual perulangan for
+    
     $levelSerapan = (int) min(5, max(1, ceil($persenPakai / 20)));
 
     return [

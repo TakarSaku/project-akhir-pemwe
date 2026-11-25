@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-// Syarat 1: Array multidimensi asosiatif minimal 10 baris sesuai topik uang saku bulanan
 $posUangSaku = [
     [
         'kode' => 'POS-01',
