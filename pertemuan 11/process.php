@@ -1,8 +1,8 @@
- <?php
+<?php
 declare(strict_types=1);
 
-require_once _DIR_ . '/auth.php';
-require_once _DIR_ . '/../pertemuan10/function.php';
+require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/../pertemuan10/function.php';
 
 initSessionData();
 $posUangSaku = $_SESSION['pos_uang_saku'];
